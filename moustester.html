@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins',sans-serif;
+        }
+        body{
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px;
+            background: rgb(9,9,121);
+            background: linear-gradient(50deg, rgba(9,9,121,1) 0%, rgba(4,121,195,1) 61%, rgba(0,212,255,1) 100%);
+        }
+        .maincontainer{
+            min-width: 700px;
+            max-width: 700px;
+            width: 100%;
+            min-height: 400px;
+            height: auto;
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 1);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            position: relative;
+        }
+        .header{
+            width: 100%;
+            text-align: center;
+        }
+        .clickme{
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 500;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .clickme:active{
+            transform: scale(0.99);
+            background: #222 !important;
+        }
+        .clickme:hover{
+            background: #222222ef;
+        }
+        .result-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+        .result{
+            display: flex;
+            flex-direction: column;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 5px;
+            min-width: 190px;
+            width: 100%;
+            height: auto;
+            padding: 13px 15px;
+            position: relative;
+            overflow: hidden;
+            margin: 5px;
+            border: .5px solid #222222b2;
+            background: #222;
+            color: #fff;
+        }
+        .result-header{
+            color: #fff;
+            font-weight: bolder;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .result span{
+            width: 100%;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .result span small{
+            font-weight: bolder;
+            font-size: 20px;
+        }
+        .reset{
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            right: -80px;
+            background: #fff;
+            color: #222;
+            font-size: 24px;
+            cursor: pointer;
+           
+        }
+        .github{
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 0 30px;
+            height: 50px;
+            border-radius: 5px;
+            background: #fff;
+            color: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .github:active{
+            transform: scale(0.98);
+        }
+        .github ion-icon{
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .github:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+        @media (max-width:1000px){
+            body{
+                padding: 100px 30px;
+            }
+        }
+        @media(max-width:760px){
+            .maincontainer{
+                min-width: 100%;
+            }
+            .result-container{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+            }
+            .result{
+                min-width: 100%;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <a href="https://github.com/Cebucoder/mousetester" style="text-decoration: none;">
+        <div class="github">
+            <ion-icon name="logo-github"></ion-icon>
+            Cebucoder
+        </div>
+    </a>
+
+    <div class="maincontainer">
+        <div class="header">
+            <h1>Test your mouse now!</h1>
+        </div>
+
+        <div class="clickme" id="clickMe">
+            Click Me
+        </div>
+
+        <div class="result-container">
+            <div class="result left">
+                <div class="result-header">
+                    Left
+                </div>
+                <span>
+                    <label>Clicks</label>
+                    <small id="button_0_normal">0</small>
+                </span>
+                <span>
+                    <label>Double Clicks</label>
+                    <small id="button_0_double">0</small>
+                </span>
+                <span>
+                    <label>Status</label>
+                    <small id="button_0_status">OK</small>
+                </span>
+            </div>
+
+            <div class="result middle">
+                <div class="result-header">
+                    Middle
+                </div>
+                <span>
+                    <label>Clicks</label>
+                    <small id="button_1_normal">0</small>
+                </span>
+                <span>
+                    <label>Double Clicks</label>
+                    <small id="button_1_double">0</small>
+                </span>
+                <span>
+                    <label>Status</label>
+                    <small id="button_1_status">OK</small>
+                </span>
+            </div>
+
+            <div class="result right">
+                <div class="result-header">
+                    Right
+                </div>
+                <span>
+                    <label>Clicks</label>
+                    <small id="button_2_normal">0</small>
+                </span>
+                <span>
+                    <label>Double Clicks</label>
+                    <small id="button_2_double">0</small>
+                </span>
+                <span>
+                    <label>Status</label>
+                    <small id="button_2_status">OK</small>
+                </span>
+            </div>
+
+        </div>
+
+        <div class="reset" id="reset">
+            <ion-icon name="refresh-outline"></ion-icon>
+        </div>
+
+    </div>
+    
+</body>
+
+<script>
+
+</script>
+
+
+<script>
+  let prevTime = {};
+  let clickCounter = {};
+  let doubleClickCounter = {};
+
+  function logMe(e) {
+    var currentTime = performance.now();
+    if (currentTime - prevTime[e.button] <= 80) {
+      if (!doubleClickCounter[e.button]) {
+        doubleClickCounter[e.button] = 0;
+      }
+      doubleClickCounter[e.button] += 1;
+      document.getElementById(`button_${e.button}_double`).innerText = doubleClickCounter[e.button];
+      document.getElementById(`button_${e.button}_status`).innerText = "Failed";
+      document.getElementById(`button_${e.button}`);
+      document.getElementById(`button_${e.button}`);
+    }
+    prevTime[e.button] = currentTime;
+
+    if (!clickCounter[e.button]) {
+      clickCounter[e.button] = 0;
+    }
+    clickCounter[e.button] += 1;
+    document.getElementById(`button_${e.button}_normal`).innerText = clickCounter[e.button];
+  }
+
+
+  // Listen to clicks on the clickbar
+  const clickMe = document.getElementById("clickMe");
+  if (clickMe) {
+    clickMe.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      return false;
+    });
+    clickMe.addEventListener("mousedown", logMe);
+
+    
+  }
+
+
+  let reset = document.getElementById('reset');
+    reset.addEventListener('click', (e) => {
+    location.reload();
+});
+
+
+</script>
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+</html>
